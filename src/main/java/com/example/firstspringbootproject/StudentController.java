@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/students")
 public class StudentController {
 
-
     @GetMapping
     public List<Student> getStudents() {
         List<Student> students = new ArrayList<>();
