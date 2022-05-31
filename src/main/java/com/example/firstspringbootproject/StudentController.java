@@ -2,22 +2,30 @@ package com.example.firstspringbootproject;
 
 import java.util.*;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/students")
 public class StudentController {
+    private final StudentService service;
+    
+    public StudentController(StudentService service) {
+        this.service = service;
+    }
+    List<Student> students = new ArrayList<>();
 
-    @GetMapping
+    @GetMapping()
     public List<Student> getStudents() {
-        List<Student> students = new ArrayList<>();
-        students.add(new Student("Motoko Kusnagi",26,"Trancendence"));
-        students.add(new Student("Yumeko Jabami",18,"Gambling"));
-        students.add(new Student("Akatsuki",10,"Assasination"));
-        students.add(new Student("Shiro",11,"Playing Games"));
-        // List<String> students = List.of("Motoko Kusangi", "Yumeko Jabami","Akatsuki","Shiro");
-        return students; 
+        return service.getStudents();
+    }
+
+    @GetMapping("/{id}")
+    public Student getStudent(@PathVariable String id){
+        return service.getStudent(id);
+    }
+
+    @PostMapping()
+    public void createStudent(@RequestBody Student student){
+        service.addStudent(student);
     }
 }

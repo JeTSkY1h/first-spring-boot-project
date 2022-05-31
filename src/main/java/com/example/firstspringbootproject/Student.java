@@ -1,24 +1,21 @@
 package com.example.firstspringbootproject;
 
+import java.util.*;
+
 public class Student {
-    private final String name;
-    private final int age;
-    private final String subject;
+    private  String id = UUID.randomUUID().toString();
+    private  String name;
     
-    Student(String name, int age, String subject){
-        this.age = age;
+    public void setName(String name){
         this.name = name;
-        this.subject = subject;
     }
 
     public String getName() {
         return name;
     }
-    public int getAge() {
-        return age;
-    }
-    public String getSubject() {
-        return subject;
+
+        public String getId() {
+        return id;
     }
 
 }
