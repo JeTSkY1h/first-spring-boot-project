@@ -2,6 +2,7 @@ package com.example.firstspringbootproject;
 
 import java.util.*;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,6 +26,7 @@ public class StudentController {
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public void createStudent(@RequestBody Student student){
         service.addStudent(student);
     }
