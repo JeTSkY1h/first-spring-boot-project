@@ -5,6 +5,10 @@ import java.util.*;
 public class Student {
     private  String id = UUID.randomUUID().toString();
     private  String name;
+
+    Student(String name){
+        this.name = name;
+    }
     
     public void setName(String name){
         this.name = name;
