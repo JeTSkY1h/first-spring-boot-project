@@ -12,8 +12,8 @@ public class StudentRepo {
         return students.values().stream().toList();
     }
 
-    public Student getStudent(String id){
-        return students.get(id);
+    public Optional<Student> getStudent(String id){
+        return Optional.ofNullable(students.get(id));
     }
 
     public void addStudent(Student studentToadd){

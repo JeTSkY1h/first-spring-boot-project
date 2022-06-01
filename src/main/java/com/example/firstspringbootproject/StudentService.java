@@ -17,7 +17,9 @@ public class StudentService {
     }
 
     public Student getStudent(String id){
-        return studentRepo.getStudent(id);
+        Optional<Student> res = studentRepo.getStudent(id);
+        if (res.isEmpty()) throw new RuntimeException("id " + id + " Wurde nicht gefunden.");
+        return res.get();
     }
 
     public void addStudent(Student studentToadd){
