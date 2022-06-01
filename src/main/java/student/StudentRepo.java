@@ -1,4 +1,4 @@
-package com.example.firstspringbootproject;
+package student;
 
 import java.util.*;
 

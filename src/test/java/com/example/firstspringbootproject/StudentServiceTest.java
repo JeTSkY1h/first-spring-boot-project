@@ -7,9 +7,14 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import student.Student;
+import student.StudentRepo;
+import student.StudentService;
+
 public class StudentServiceTest {
     Student motoko = new Student("Motoko Kusnagi");
     Student asterix = new Student("Asterix");
+    
     @Test
     void ShouldReturnStudent(){
         //GIVEN
@@ -18,9 +23,22 @@ public class StudentServiceTest {
         when(studentRepo.getStudent("4711"))
             .thenReturn(Optional.ofNullable(motoko));
         //WHEN 
-        Student actual = studentService.getStudent("4711");
+        Optional <Student> actual = studentService.getStudent("4711");
         //then
-        assertThat(actual).isEqualTo(motoko);
+        assertThat(actual.get()).isEqualTo(motoko);
+    }
+
+    @Test
+    void ShouldReturnEmptyOptionalCuseStudentDosntExist(){
+        //GIVEN
+        StudentRepo studentRepo = Mockito.mock(StudentRepo.class);
+        StudentService studentService = new StudentService(studentRepo);
+        when(studentRepo.getStudent("4711"))
+            .thenReturn(Optional.ofNullable(motoko));
+        //WHEN 
+        Optional<Student> actual = studentService.getStudent("234");
+        //then
+        assertThat(actual).isEmpty();
     }
 
     @Test

@@ -1,4 +1,4 @@
-package com.example.firstspringbootproject;
+package student;
 
 import java.util.*;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class StudentService {
     StudentRepo studentRepo;
 
-    StudentService(StudentRepo studentRepo){
+    public StudentService(StudentRepo studentRepo){
         this.studentRepo = studentRepo;
     }
 
@@ -16,10 +16,9 @@ public class StudentService {
         return studentRepo.getStudents();
     }
 
-    public Student getStudent(String id){
+    public Optional<Student> getStudent(String id){
         Optional<Student> res = studentRepo.getStudent(id);
-        if (res.isEmpty()) throw new RuntimeException("id " + id + " Wurde nicht gefunden.");
-        return res.get();
+        return res;
     }
 
     public void addStudent(Student studentToadd){

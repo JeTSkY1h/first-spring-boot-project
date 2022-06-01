@@ -1,4 +1,4 @@
-package com.example.firstspringbootproject;
+package student;
 
 import java.util.*;
 
@@ -6,7 +6,7 @@ public class Student {
     private  String id = UUID.randomUUID().toString();
     private  String name;
 
-    Student(String name){
+    public Student(String name){
         this.name = name;
     }
     

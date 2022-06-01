@@ -1,4 +1,4 @@
-package com.example.firstspringbootproject;
+package student;
 
 import java.util.*;
 
@@ -22,7 +22,7 @@ public class StudentController {
 
     @GetMapping("/{id}")
     public Student getStudent(@PathVariable String id){
-        return service.getStudent(id);
+        return service.getStudent(id).get();
     }
 
     @PostMapping()
