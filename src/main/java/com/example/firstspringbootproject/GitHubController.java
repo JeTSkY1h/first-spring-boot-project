@@ -2,19 +2,20 @@ package com.example.firstspringbootproject;
 
 import java.util.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/github")
 public class GitHubController {
     
+    private final GitHubService gitHubService;
+
+    public GitHubController(GitHubService gitHubService) {
+        this.gitHubService = gitHubService;
+    }
+
     @GetMapping("/{user}")
     public List<String> getRepos(@PathVariable String user){
-        RestTemplate restTemplate = new RestTemplate();
-        
-        
-        return Arrays.stream(restTemplate.getForObject("https://api.github.com/users/" + user + "/repos", Repos[].class))
-                .map(r -> r.getName()).toList();
+       return gitHubService.getRepos(user).stream().map(r->r.getName()).toList();
 
     }
 
